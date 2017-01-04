@@ -1,0 +1,64 @@
+Steps to install test-kitchen
+
+1. Install vagrant, virtualbox, git.
+	- Download .tar.gz packages from official sites and run dpkg -i <package>.tar.gz to install.
+	- wget https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb
+	- wget http://download.virtualbox.org/virtualbox/5.1.12/virtualbox-5.1_5.1.12-112440~Ubuntu~trusty_amd64.deb
+	- sudo dpkg -i vagrant_1.9.1_x86_64.deb
+	- sudo dpkg -i virtualbox-5.1_5.1.12-112440~Ubuntu~trusty_amd64.deb
+
+2. Install ruby (>2.0)
+	- sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+	- sudo apt-get install rbenv
+	- sudo apt-add-repository ppa:brightbox/ruby-ng
+	- sudo apt-cache policy ruby2.2
+	- sudo apt-get install ruby2.2
+	- ruby --version
+
+3. Install test-kitchen
+	- sudo gem install test-kitchen
+	- kitchen --version
+
+4. Fix errors : 
+	- kitchen list (list kitchens)
+	- kitchen diagnose --all (for detailed error)
+
+	a) ERROR : >>>>>> ------Exception-------
+	   >>>>>> Class: Kitchen::ClientError
+	   >>>>>> Message: Could not load the 'vagrant' driver from the load path. 
+	   Please ensure that your driver is installed as a gem or included in your 
+           Gemfile if using Bundler.
+	   >>>>>> ----------------------
+	   >>>>>> Please see .kitchen/logs/kitchen.log for more details
+	   >>>>>> Also try running `kitchen diagnose --all` for configuration
+
+		*Install kitchen-vagrant
+		- sudo gem install kitchen-vagrant
+		
+	b) ERROR : !!!!!! The `berkshelf' gem is missing and must be installed or
+	   cannot be properly activated. Run `gem install berkshelf` or add 
+	   the following to your Gemfile if you are using Bundler: `gem 'berkshelf'`.
+
+		*Install berkshelf
+		- sudo gem install berkshelf (If this throws errors, then follow below steps)
+	
+	    ERROR : Building native extensions.  This could take a while...
+	    ERROR:  Error installing berkshelf:
+            ERROR: Failed to build gem native extension.
+	    /usr/bin/ruby2.2 -r ./siteconf20170104-19852-1igtbbl.rb extconf.rb
+	    mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+	    extconf failed, exit code 1
+		
+		*Install ruby-dev
+		- sudo apt-get install ruby-dev
+		- sudo apt-get install ruby2.0-dev
+		- sudo apt-get install ruby2.2-dev (Accordingly)
+
+	c) ERROR : _Could not load or activate Berkshelf (Unable to activate berkshelf-5.3.0,
+      	   because thor-0.19.4 conflicts with thor (< 0.19.2, ~> 0.19))_
+
+		*Install berkshelf version 5.2.0
+		- sudo gem uninstall berkshelf (Removing version 5.3.0 and trying 5.2.0)
+		- gem install berkshelf -v 5.2.0
+
+5. kitchen list
