@@ -62,8 +62,10 @@ Steps to install test-kitchen
 		- gem install berkshelf -v 5.2.0
 
 5. kitchen list
-	- Adding box manually to avoid slow download.
-	  Add the following lines in .kitchen.yml file <sample>
+	1) _Adding box manually to avoid slow download._
+	    a) Download ubuntu box from internet
+	        - wget https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box 
+	    b) Add the following lines in .kitchen.yml file <sample>
 		platforms:
 		  - name: ubuntu-12.04
 		    driver:
