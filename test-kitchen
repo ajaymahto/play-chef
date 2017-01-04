@@ -9,7 +9,6 @@ Steps to install test-kitchen
 
 2. Install ruby (>2.0)
 	- sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
-	- sudo apt-get install rbenv
 	- sudo apt-add-repository ppa:brightbox/ruby-ng
 	- sudo apt-cache policy ruby2.2
 	- sudo apt-get install ruby2.2
@@ -54,8 +53,9 @@ Steps to install test-kitchen
 		- sudo apt-get install ruby2.0-dev
 		- sudo apt-get install ruby2.2-dev (Accordingly)
 
-	c) ERROR : _Could not load or activate Berkshelf (Unable to activate berkshelf-5.3.0,
-      	   because thor-0.19.4 conflicts with thor (< 0.19.2, ~> 0.19))_
+	c) ***Only on Ubuntu14.04 VM on Nimbus** 
+	   ERROR : _Could not load or activate Berkshelf (Unable to activate berkshelf-5.3.0,
+      	   because thor-0.19.4 conflicts with thor (< 0.19.2, ~> 0.19))_ ##Environment Dependent
 
 		*Install berkshelf version 5.2.0
 		- sudo gem uninstall berkshelf (Removing version 5.3.0 and trying 5.2.0)
