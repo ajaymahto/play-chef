@@ -62,3 +62,11 @@ Steps to install test-kitchen
 		- gem install berkshelf -v 5.2.0
 
 5. kitchen list
+	- Adding box manually to avoid slow download.
+	  Add the following lines in .kitchen.yml file <sample>
+		platforms:
+		  - name: ubuntu-12.04
+		    driver:
+      		    box: ubuntubox.box
+      	 	    box_url: file:///home/aj/clusterStorm/migration_pro/chef-repo/cookbooks/sd_blog_mysqlproduct/ubuntubox.box
+
